@@ -35,9 +35,17 @@ jobs:
           sudo mv geckodriver /usr/local/bin/
           geckodriver --version
 
+      - name: Create reports directory
+        run: |
+          mkdir -p reports/
+
       - name: Run tests
         run: |
           pytest tests/ --html=reports/report.html --self-contained-html
+
+      - name: List reports directory
+        run: |
+          ls -l reports/
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
